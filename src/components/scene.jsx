@@ -28,6 +28,7 @@ const Scene = () => {
     activePoint,
     cameraControlsRef,
     hideNames,
+    updatedInfo,
   } = useKneeCapContext();
 
   const { raycaster } = useThree();
@@ -49,7 +50,7 @@ const Scene = () => {
           if (!pointsRef.current.includes(pointRef)) {
             pointsRef.current.push(pointRef);
           }
-        }, [activePoint, hideNames]);
+        }, [activePoint, hideNames, updatedInfo]);
 
         return (
           <PivotControls
