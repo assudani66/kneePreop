@@ -17,7 +17,7 @@ To get started with the Knee Propping Application, follow these steps:
 2. Change to the project directory:
 
    ```
-   cd knee-propping-app
+   cd kneeProp
    ```
 
 3. Install project dependencies using Yarn:
