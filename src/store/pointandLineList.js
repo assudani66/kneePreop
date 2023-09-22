@@ -17,8 +17,8 @@ export const pointsListData = [
   },
   { name: "Distal Medical Pt", location: [-4, 13, -207] },
   { name: "Distal Lateral Pt", location: [48, 19, -210] },
-  { name: "Femur Proximal Canal", location: [0, 0, 250] },
-  { name: "Femur Distal Canal", location: [0, 0, 250] },
+  { name: "Femur Proximal Canal", location: [0, 0, -36] },
+  { name: "Femur Distal Canal", location: [-11, 0, 49] },
   {
     name: "Posterior Medical Pt",
     location: [3.819062474672881, -21.39094555805142, -193.4888607951557],
@@ -53,6 +53,12 @@ export const lineList = [
     name: "PCA - Postrerior Condyle Axis",
     start: 8,
     end: 9,
+    color: "green",
+  },
+  {
+    name: "PCA - Postrerior Condyle Axis",
+    start: 6,
+    end: 7,
     color: "green",
   },
 ];

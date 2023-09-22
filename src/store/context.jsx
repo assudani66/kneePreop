@@ -16,14 +16,22 @@ export const KneeCapCotextProvider = ({ children }) => {
   const controlsRef = useRef();
   const rayRef = useRef();
   const resectionRef = useRef();
+  const resectionBoxRef = useRef();
   const KneeModelRef = useRef();
+  const cameraControlsRef = useRef();
+  const kneeModelMaterialRef = useRef();
   const pointsRef = useRef([]);
   const linesRef = useRef([]);
-  const [dynamicLine, setDynamicLineState] = useState({});
+  const [hideNames, setHideNames] = useState(false);
+  const [updatedInfo, setUpdatedInfo] = useState({
+    valgusAngle: 0,
+    flexionAngle: 0,
+    resection: 0,
+  });
 
   pointsRef.current = [];
 
-  const [activePoint, setActivePoint] = useState("Femur Center");
+  const [activePoint, setActivePoint] = useState(1);
   const [isResectionVisible, setIsResectionVisible] = useState(false);
   const [pointsList, setPointsList] = useState(pointsListData);
   const getAbsolutePostion = (element) => {
@@ -60,32 +68,50 @@ export const KneeCapCotextProvider = ({ children }) => {
   let rayDirection = new THREE.Vector3(1, 0, 0);
 
   const disableOrbitControls = () => {
-    controlsRef.current.enabled = !controlsRef.current.enabled;
+    cameraControlsRef.current.enabled = !cameraControlsRef.current.enabled;
   };
 
   const updateflexionPlane = (amount) => {
-    const rotation = flexionPlaneRef.current.rotation.x;
+    const rotation = flexionPlaneRef.current.rotation.y;
+    setUpdatedInfo({
+      ...updatedInfo,
+      flexionAngle: amount + updatedInfo.flexionAngle,
+    });
     amount = amount * (Math.PI / 180);
     const radians = rotation + amount;
-    flexionPlaneRef.current.rotation.set(radians, 0, 0);
+    flexionPlaneRef.current.rotation.set(0, radians, 0);
+    distalMedicalPlaneRef.current.rotation.set(0, radians, 0);
   };
 
   const updatevalgusPlane = (amount) => {
     const rotation = valgusPlaneRef.current.rotation.x;
+    setUpdatedInfo({
+      ...updatedInfo,
+      valgusAngle: amount + updatedInfo.valgusAngle,
+    });
     amount = amount * (Math.PI / 180);
     const radians = rotation + amount;
+
     valgusPlaneRef.current.rotation.set(radians, 0, 0);
+  };
+
+  const updateResectionAmount = (amount) => {
+    const scale = distalMedicalPlaneRef.current.scale.z;
+    setUpdatedInfo({
+      ...updatedInfo,
+      resection: amount + updatedInfo.resection,
+    });
+    amount = scale + amount;
+    distalMedicalPlaneRef.current.scale.set(150, 150, amount);
   };
 
   const updateAllLines = () => {
     rayRef.current.set(rayOrigin, rayDirection);
-
-    console.log(KneeModelRef.current);
     // const rayIntersect = rayRef.current.intersectObject(KneeModelRef.current);
     // console.log(rayIntersect);
-    console.log(rayRef);
     // console.log(valgusPlaneRef.current);
     const viewingPosition = getAbsolutePostion(pointsRef.current[1]);
+
     const viewingVector = new THREE.Vector3(
       viewingPosition[0],
       viewingPosition[1],
@@ -134,10 +160,8 @@ export const KneeCapCotextProvider = ({ children }) => {
 
     const positionAttribute =
       line.current.geometry.attributes.instanceStart.data;
-
     positionAttribute.array = updatedPositions;
     positionAttribute.needsUpdate = true;
-    controlsRef.current.enabled = true;
   };
 
   return (
@@ -168,8 +192,16 @@ export const KneeCapCotextProvider = ({ children }) => {
         isResectionVisible,
         setIsResectionVisible,
         resectionRef,
+        resectionBoxRef,
         updatevalgusPlane,
         updateflexionPlane,
+        updateResectionAmount,
+        cameraControlsRef,
+        hideNames,
+        setHideNames,
+        kneeModelMaterialRef,
+        updatedInfo,
+        setUpdatedInfo,
       }}
     >
       {children}

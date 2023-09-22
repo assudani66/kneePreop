@@ -33,8 +33,6 @@ const DerivedLines = () => {
     }
   }, []);
 
-  console.log(rayOrigin.add(rayDirection));
-
   return (
     <>
       <Line

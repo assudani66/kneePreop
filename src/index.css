@@ -41,7 +41,7 @@ body {
   position: relative;
 }
 
-.overlay {
+.rightOverlay {
   position: absolute;
   top: 0;
   right: 0;
@@ -51,4 +51,83 @@ body {
   border-radius: 4px;
   margin: 10px;
   z-index: 10;
+}
+.leftOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  margin: 10px;
+  z-index: 10;
+}
+
+.centerOverlay {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #E966A0;
+  padding: 10px;
+  margin: 10px;
+  z-index: 10;
+}
+
+.bottomOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  margin: 10px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+}
+.rightBottomOverlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  margin: 10px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  background-color: #2B2730;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: auto;
+}
+
+button svg {
+  margin-right: 5px;
+}
+
+button:hover {
+  background-color: #443e4b;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #443e4b;
 }

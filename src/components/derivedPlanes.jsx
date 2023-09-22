@@ -1,21 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useKneeCapContext } from "../store/context";
 import * as THREE from "three";
-import { useThree } from "@react-three/fiber";
-import { Line, PivotControls } from "@react-three/drei";
+import { PivotControls } from "@react-three/drei";
 
 const DerivedPlanes = () => {
   const {
     valgusPlaneRef,
     flexionPlaneRef,
     distalMedicalPlaneRef,
-    distalResectionPlaneRef,
     distalMedicalPlaneLocation,
     disableOrbitControls,
     rayOrigin,
-    isResectionVisible,
     resectionRef,
   } = useKneeCapContext();
+
   return (
     <>
       <PivotControls
