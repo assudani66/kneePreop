@@ -1,5 +1,5 @@
 # Knee Propping Application
-[<img src="https://img.youtube.com/vi/0McNUBzwdh4/hqdefault.jpg" width="600" height="300"
+[<img src="https://img.youtube.com/vi/0McNUBzwdh4/hqdefault.jpg" width="640" height="360"
 />](https://www.youtube.com/embed/0McNUBzwdh4)
 ## Description
 
